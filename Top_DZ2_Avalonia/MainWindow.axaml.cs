@@ -30,7 +30,6 @@ namespace Top_DZ2_Avalonia
             if (CheeseCheck?.IsChecked == true) price += 50;
 
             decimal amount = AmountNumeric?.Value ?? 1;
-
             price *= amount;
 
             SummText.Text = $"Сумма: {price:N0} руб.";
@@ -69,7 +68,6 @@ namespace Top_DZ2_Avalonia
             }
 
             OrderInfoText.Foreground = Brushes.Green;
-
             string totalSum = SummText?.Text ?? "0";
 
             OrderInfoText.Text = $"Заказ успешно оформлен!\n" +

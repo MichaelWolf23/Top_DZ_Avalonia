@@ -11,7 +11,6 @@
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel HorizontalAlignment="Center">
             <TextBlock Text="Форма заказа пиццы" FontSize="20" FontWeight="Bold" Margin="10" HorizontalAlignment="Center"/>
-
             <TextBlock Text="Клиент" FontSize="18" FontWeight="SemiBold" Margin="10" HorizontalAlignment="Center"/>
 	        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 		        <TextBox x:Name="NameBox" Width="180" Height="30" Margin="10" Watermark="Введите имя"/>
@@ -21,7 +20,6 @@
                 <TextBox x:Name="AddressBox" Width="380" Height="30" Margin="10" Watermark="Введите адрес"/>
             </StackPanel>
             <TextBlock Text="Выбор пиццы" FontSize="18" FontWeight="SemiBold" Margin="10" HorizontalAlignment="Center"/>
-
             <UniformGrid Columns="3">
                 <RadioButton x:Name="MargaritaRadio" Content="Маргарита 300р" Margin="10" IsCheckedChanged="UpdatePrice" IsChecked="true"/>
                 <RadioButton x:Name="PepperoniRadio" Content="Пепперони 400р" Margin="10" IsCheckedChanged="UpdatePrice"/>
