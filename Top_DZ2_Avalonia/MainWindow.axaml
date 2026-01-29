@@ -1,0 +1,52 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="700"
+        x:Class="Top_DZ2_Avalonia.MainWindow"
+        Title="PizzaOrder: Волков"
+        Width="500" Height="700" CanResize="False"
+        Background="Beige"
+        Foreground="Black" RequestedThemeVariant="Light">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel HorizontalAlignment="Center">
+            <TextBlock Text="Форма заказа пиццы" FontSize="20" FontWeight="Bold" Margin="10" HorizontalAlignment="Center"/>
+
+            <TextBlock Text="Клиент" FontSize="18" FontWeight="SemiBold" Margin="10" HorizontalAlignment="Center"/>
+	        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+		        <TextBox x:Name="NameBox" Width="180" Height="30" Margin="10" Watermark="Введите имя"/>
+                <TextBox x:Name="TelBox" Width="180" Height="30" Margin="10" Watermark="Введите телефон"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBox x:Name="AddressBox" Width="380" Height="30" Margin="10" Watermark="Введите адрес"/>
+            </StackPanel>
+            <TextBlock Text="Выбор пиццы" FontSize="18" FontWeight="SemiBold" Margin="10" HorizontalAlignment="Center"/>
+
+            <UniformGrid Columns="3">
+                <RadioButton x:Name="MargaritaRadio" Content="Маргарита 300р" Margin="10" IsCheckedChanged="UpdatePrice" IsChecked="true"/>
+                <RadioButton x:Name="PepperoniRadio" Content="Пепперони 400р" Margin="10" IsCheckedChanged="UpdatePrice"/>
+                <RadioButton x:Name="GavajskayaRadio" Content="Гавайская 500р" Margin="10" IsCheckedChanged="UpdatePrice"/>
+            </UniformGrid>
+            <TextBlock Text="Добавки" FontSize="18" FontWeight="SemiBold" Margin="10" HorizontalAlignment="Center"/>
+            <UniformGrid Columns="3" Rows="2">
+                <CheckBox x:Name="PeretsCheck" Content="Перец 20р" Margin="10" IsCheckedChanged="UpdatePrice"/>
+                <CheckBox x:Name="LukCheck" Content="Лук 25р" Margin="10" IsCheckedChanged="UpdatePrice"/>
+                <CheckBox x:Name="PomidorCheck" Content="Помидоры 30р" Margin="10" IsCheckedChanged="UpdatePrice"/>
+		        <CheckBox x:Name="GribCheck" Content="Грибы 35р" Margin="10" IsCheckedChanged="UpdatePrice"/>
+                <CheckBox x:Name="OlivkiCheck" Content="Оливки 40р" Margin="10" IsCheckedChanged="UpdatePrice"/>
+                <CheckBox x:Name="CheeseCheck" Content="Сыр 50р" Margin="10" IsCheckedChanged="UpdatePrice"/>
+            </UniformGrid>
+            <TextBlock Text="Количество" FontSize="18" FontWeight="SemiBold" Margin="10" HorizontalAlignment="Center"/>
+            <StackPanel>
+		        <NumericUpDown x:Name="AmountNumeric" Width="200" Height="20" Margin="10" Minimum="1" Maximum="20" Value="1" FormatString="0" ValueChanged="AmountNumeric_ValueChanged"/>
+            </StackPanel>
+            <TextBlock Text="Итог" FontSize="18" FontWeight="SemiBold" Margin="10" HorizontalAlignment="Center"/>
+
+            <StackPanel>
+		        <TextBlock x:Name="SummText" Text="Сумма: 300 руб." FontSize="16" Margin="10" HorizontalAlignment="Center"/>
+                <Button Content="Оформить заказ" Margin="10" HorizontalAlignment="Center" Click="OrderButton_Click"/>
+                <TextBlock x:Name="OrderInfoText" FontSize="16" Margin="10" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</Window>
