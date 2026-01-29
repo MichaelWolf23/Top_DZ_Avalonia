@@ -6,11 +6,11 @@
         x:Class="Top_DZ1_Avalonia.MainWindow"
         Width="300" Height="450" Title="Портфолио: Волков" CanResize="False">
     <StackPanel>
-		<TextBlock Margin="10,10,10,0" FontWeight="700" TextAlignment="Center" FontSize="20" Text="Волков Михаил" />
-        <TextBlock Margin="10,10,10,0" TextAlignment="Center" TextWrapping="Wrap" Text="Учусь в академии 'TOP'. Вхожу в IT через практику и код. Создаю своё будущее прямо сейчас" />
+		<TextBlock Margin="10,10,10,0" FontWeight="700" TextAlignment="Center" FontSize="20" Text="Волков Михаил"/>
+        <TextBlock Margin="10,10,10,0" TextAlignment="Center" TextWrapping="Wrap" Text="Учусь в академии 'TOP'. Вхожу в IT через практику и код. Создаю своё будущее прямо сейчас"/>
         <TextBlock Margin="10,10,10,0" TextAlignment="Center" x:Name="TextSecret" IsVisible="False" TextWrapping="Wrap" Text="Моя любимая клавиша — Ctrl+Z, она спасает мою жизнь чаще, чем ремень безопасности." />
         <StackPanel Margin="10,15,10,0" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
-            <Button Content="Показать секрет" Click="ShowSecret_Click" />
+            <Button Content="Показать секрет" Click="ShowSecret_Click"/>
             <Button Content="Выход" Click="Exit_Click" />
         </StackPanel>
     </StackPanel>

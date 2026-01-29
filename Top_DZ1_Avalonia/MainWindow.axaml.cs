@@ -14,7 +14,6 @@ public partial class MainWindow : Window
     {
         var secret = TextSecret;
         secret.IsVisible = true;
-
     }
 
     public void Exit_Click(object sender, RoutedEventArgs e)
