@@ -1,0 +1,41 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="350"
+        x:Class="Top_DZ3_Avalonia.MainWindow"
+        Title="Сотрудник: Волков"
+        Width="500" Height="350"
+        CanResize="False"
+        Background="#f0f0f0"
+        WindowStartupLocation="CenterScreen"
+        RequestedThemeVariant="Light">
+
+    <Grid RowDefinitions="Auto, *, Auto" ColumnDefinitions="180, *">
+
+        <Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Margin="15"
+                Source="avares://Top_DZ3_Avalonia/Assets/sotrudnik.png" Stretch="UniformToFill"/>
+       
+
+        <StackPanel Grid.Row="0" Grid.Column="1" Margin="10,20,20,0">
+            <TextBlock Text="ИВАНОВ ПЕТР" FontSize="22" FontWeight="Bold"/>
+            <Separator Height="1" Background="Gray" Margin="0,5"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="1" Margin="10,10,20,10">
+            <TextBlock Text="Должность: Инженер-программист" Margin="0,3"/>
+            <TextBlock Text="Отдел: Разработка ПО" Margin="0,3"/>
+            <TextBlock Text="Стаж: 5 лет" Margin="0,3"/>
+            <TextBlock Text="Email: ivanov@gmail.com" Margin="0,3"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" 
+                    Orientation="Horizontal" HorizontalAlignment="Right" 
+                    Margin="15" Spacing="10">
+            <Button Content="Сохранить" Width="100" HorizontalContentAlignment="Center"/>
+            <Button Content="Отмена" Width="100" HorizontalContentAlignment="Center"/>
+        </StackPanel>
+
+    </Grid>
+
+</Window>
