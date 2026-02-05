@@ -1,0 +1,72 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="520" d:DesignHeight="420"
+        x:Class="Top_DZ4_Avalonia.MainWindow"
+        Title="Профиль: Волков"
+        Width="520" Height="420" CanResize="False">
+    <Window.Styles>
+        <FluentTheme />
+
+		<Style Selector="TextBlock.h1">
+            <Setter Property="FontSize" Value="{DynamicResource H1FontSize}"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+            <Setter Property="Margin" Value="0,0,0,20"/>
+        </Style>
+
+        <Style Selector="Button">
+            <Setter Property="Padding" Value="15,8"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style Selector="Button.primary">
+            <Setter Property="Background" Value="{DynamicResource AccentBrush}"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <Style Selector="Button.primary:pointerover">
+            <Setter Property="Background" Value="{DynamicResource AccentBrush}"/>
+            <Setter Property="Opacity" Value="0.8"/>
+        </Style>
+    </Window.Styles>
+    <StackPanel Margin="{DynamicResource SpacingM}">
+        <TextBlock Text="Личный кабинет" Classes="h1"/>
+
+        <Border Background="{DynamicResource CardBackground}" 
+                CornerRadius="{DynamicResource CardRadius}" 
+                Padding="{DynamicResource CardPadding}" 
+                Margin="0,0,0,15">
+            <StackPanel Spacing="10">
+                <TextBlock Text="Имя" Foreground="{DynamicResource SubTextBrush}"/>
+                <TextBox Text="Иван Иванов"/>
+                
+                <TextBlock Text="Email" Foreground="{DynamicResource SubTextBrush}"/>
+                <TextBox Text="ivan@example.com"/>
+                
+                <TextBlock Text="Город" Foreground="{DynamicResource SubTextBrush}"/>
+                <ComboBox HorizontalAlignment="Stretch" SelectedIndex="0">
+                    <ComboBoxItem>Москва</ComboBoxItem>
+                    <ComboBoxItem>Санкт-Петербург</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+        </Border>
+
+        <Border Background="{DynamicResource CardBackground}" 
+                CornerRadius="{DynamicResource CardRadius}" 
+                Padding="{DynamicResource CardPadding}">
+            <DockPanel>
+                <ToggleSwitch x:Name="ThemeSwitch" 
+                              Content="Тёмная тема"
+                              OffContent="Выкл" OnContent="Вкл"
+                              Click="ToggleTheme_Click"/>
+                
+                <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Right">
+                    <Button Content="Отмена"/>
+                    <Button Content="Сохранить" Classes="primary"/>
+                </StackPanel>
+            </DockPanel>
+        </Border>
+    </StackPanel>
+</Window>
