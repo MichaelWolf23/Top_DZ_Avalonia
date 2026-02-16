@@ -1,0 +1,118 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:Top_DZ5_Avalonia.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="700" d:DesignHeight="450"
+        x:Class="Top_DZ5_Avalonia.MainWindow"
+        x:DataType="vm:ProfileViewModel"
+        Title="ProfileCard: Волков"
+        Width="700" Height="480" CanResize="False"
+        Background="#F0F2F5"
+        RequestedThemeVariant="Light"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <SolidColorBrush x:Key="PrimaryBlue">#3B82F6</SolidColorBrush>
+        <SolidColorBrush x:Key="TextDark">#1F2937</SolidColorBrush>
+        <SolidColorBrush x:Key="TextGray">#6B7280</SolidColorBrush>
+        <SolidColorBrush x:Key="CardBg">#FFFFFF</SolidColorBrush>
+        <SolidColorBrush x:Key="ErrorRed">#EF4444</SolidColorBrush>
+        <SolidColorBrush x:Key="SuccessGreen">#10B981</SolidColorBrush>
+    </Window.Resources>
+
+    <Window.Styles>
+        <Style Selector="TextBlock.Label">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="{StaticResource TextGray}"/>
+            <Setter Property="Margin" Value="0,12,0,4"/>
+        </Style>
+
+        <Style Selector="Border.Card">
+            <Setter Property="Background" Value="{StaticResource CardBg}"/>
+            <Setter Property="CornerRadius" Value="16"/>
+            <Setter Property="Padding" Value="24"/>
+            <Setter Property="BoxShadow" Value="0 10 25 0 #20000000"/>
+        </Style>
+
+        <Style Selector="TextBox, ComboBox, NumericUpDown">
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="Height" Value="32"/>
+        </Style>
+    </Window.Styles>
+
+    <Grid ColumnDefinitions="320, *">
+        
+        <Border Grid.Column="0" Background="White" BorderBrush="#E5E7EB" BorderThickness="0,0,1,0">
+            <ScrollViewer>
+                <StackPanel Margin="25">
+                    <TextBlock Text="Редактирование" FontSize="20" FontWeight="Bold" Foreground="{StaticResource TextDark}" Margin="0,0,0,10"/>
+                    <TextBlock Text="Заполните данные профиля" FontSize="13" Foreground="{StaticResource TextGray}" Margin="0,0,0,20"/>
+
+                    <TextBlock Text="ФИО" Classes="Label"/>
+                    <TextBox Text="{Binding FullName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                             Watermark="Иванов Иван Иванович"/>
+
+                    <TextBlock Text="Роль" Classes="Label"/>
+                    <ComboBox SelectedItem="{Binding SelectedRole, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                              HorizontalAlignment="Stretch" PlaceholderText="Выберите роль">
+                        <ComboBoxItem Content="Разработчик"/>
+                        <ComboBoxItem Content="Дизайнер"/>
+                        <ComboBoxItem Content="Тестировщик"/>
+                        <ComboBoxItem Content="Менеджер"/>
+                    </ComboBox>
+
+                    <TextBlock Text="Email" Classes="Label"/>
+                    <TextBox Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                             Watermark="user@example.com"/>
+
+                    <TextBlock Text="Телефон" Classes="Label"/>
+                    <TextBox Text="{Binding Phone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                             Watermark="+7 (999) 000-00-00"/>
+
+                    <TextBlock Text="Стаж (лет)" Classes="Label"/>
+                    <NumericUpDown Value="{Binding ExperienceYears, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                   Minimum="0" Maximum="100" FormatString="0"/>
+
+                    <CheckBox IsChecked="{Binding IsSubscribed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                              Margin="0,20,0,0">
+                        <TextBlock Text="Получать новости" FontSize="14" VerticalAlignment="Center"/>
+                    </CheckBox>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+
+        <Grid Grid.Column="1" Background="#F3F4F6">
+            <Border Classes="Card" Width="320" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <StackPanel>
+                    <TextBlock Text="{Binding FullName}" FontSize="22" FontWeight="Black" 
+                               Foreground="{StaticResource TextDark}" TextWrapping="Wrap" LineHeight="28"/>
+
+                    <TextBlock Text="{Binding SummaryLine}" FontSize="14" FontWeight="Medium" 
+                               Foreground="{StaticResource PrimaryBlue}" Margin="0,5,0,15"/>
+
+                    <Separator Background="#E5E7EB" Height="1" Margin="0,0,0,15"/>
+
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="{Binding Email, StringFormat='Email: {0}'}" Foreground="{StaticResource TextDark}"/>
+                        <TextBlock Text="{Binding Phone, StringFormat='Тел: {0}'}" Foreground="{StaticResource TextDark}"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="0,20,0,0">
+                        <Border IsVisible="{Binding WarningText, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                                Background="#FEF2F2" CornerRadius="6" Padding="10" Margin="0,0,0,10">
+                            <TextBlock Text="{Binding WarningText}" Foreground="{StaticResource ErrorRed}" FontWeight="Medium"/>
+                        </Border>
+
+                        <Border IsVisible="{Binding IsSubscribed}"
+                                Background="#ECFDF5" CornerRadius="6" Padding="10">
+                            <TextBlock Text="Подписка активна" Foreground="{StaticResource SuccessGreen}" FontWeight="Bold"/>
+                        </Border>
+                    </StackPanel>
+
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>
