@@ -1,0 +1,49 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="540" d:DesignHeight="360"
+        x:Class="Top_DZ6_Avalonia.MainWindow"
+        xmlns:vm="using:Top_DZ6_Avalonia.ViewModels"
+        x:DataType="vm:MainWindowViewModel"
+        Title="Калькулятор чаевых"
+        Width="520" Height="360" CanResize="False"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid Margin="20" RowDefinitions="Auto,Auto,Auto,Auto,*,Auto" ColumnDefinitions="*,*">
+        
+        <StackPanel Grid.Row="0" Grid.Column="0" Margin="5">
+            <TextBlock Text="Сумма счета (руб.)"/>
+            <NumericUpDown Value="{Binding BillAmount}" Minimum="0"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="0" Margin="5">
+            <TextBlock Text="Процент чаевых (%)"/>
+            <Slider Value="{Binding TipPercentage}" Minimum="0" Maximum="100"/>
+            <TextBlock Text="{Binding TipPercentage, StringFormat={}{0:F0}%}" HorizontalAlignment="Right"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="0" Margin="5">
+            <TextBlock Text="Количество людей"/>
+            <NumericUpDown Value="{Binding NumberOfPeople}" Minimum="1" FormatString="0"/>
+        </StackPanel>
+
+        <CheckBox Grid.Row="3" Grid.Column="0" Content="Округлять итог вверх" 
+                  IsChecked="{Binding IsRounded}" Margin="5"/>
+
+        <StackPanel Grid.Row="0" Grid.RowSpan="4" Grid.Column="1" VerticalAlignment="Center" Margin="20,0">
+            <TextBlock Text="Чаевые:"/>
+            <TextBlock Text="{Binding TipAmount, StringFormat={}{0:C}}" FontSize="20" FontWeight="Bold"/>
+            
+            <TextBlock Text="Итого с чаевыми:" Margin="0,10,0,0"/>
+            <TextBlock Text="{Binding TotalAmount, StringFormat={}{0:C}}" FontSize="20" FontWeight="Bold"/>
+            
+            <TextBlock Text="На человека:" Margin="0,10,0,0"/>
+            <TextBlock Text="{Binding AmountPerPerson, StringFormat={}{0:C}}" FontSize="20" FontWeight="Bold" Foreground="Green"/>
+        </StackPanel>
+
+        <Button Grid.Row="5" Grid.ColumnSpan="2" Content="Сбросить всё" 
+                Command="{Binding ResetCommand}" 
+                HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"/>
+    </Grid>
+</Window>

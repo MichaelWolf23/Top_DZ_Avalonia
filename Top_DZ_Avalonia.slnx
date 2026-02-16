@@ -3,4 +3,6 @@
   <Project Path="Top_DZ2_Avalonia/Top_DZ2_Avalonia.csproj" />
   <Project Path="Top_DZ3_Avalonia/Top_DZ3_Avalonia.csproj" Id="348502ef-3a26-4ecd-b94c-6d09889e6a1d" />
   <Project Path="Top_DZ4_Avalonia/Top_DZ4_Avalonia.csproj" Id="8ecf8748-1d50-49e4-966f-2c4c2bb341d4" />
+  <Project Path="Top_DZ5_Avalonia/Top_DZ5_Avalonia.csproj" Id="b144f4a3-ff97-4309-bbde-53a524c1586a" />
+  <Project Path="Top_DZ6_Avalonia/Top_DZ6_Avalonia.csproj" Id="cb01eaec-221b-47d2-ac24-bd8cd2ee93f7" />
 </Solution>
