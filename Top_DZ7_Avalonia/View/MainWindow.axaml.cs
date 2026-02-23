@@ -19,16 +19,40 @@ public partial class MainWindow : Window
         DataContext = new MainWindowViewModel();
     }
 
-    private async void Add_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    private async void Add_Click(object? sender, RoutedEventArgs e)
     {
-        var dlg = new AddEmployeeWindow();
+        var dlg = new EmployeeEditorWindow("Добавление сотрудника");
         var employee = await dlg.ShowDialog<Employee?>(this);
 
         if (employee is not null)
             ViewModel.Employees.Add(employee);
     }
 
-    private async void Save_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    private async void Edit_Click(object? sender, RoutedEventArgs e)
+    {
+        if (ViewModel.SelectedEmployee is null) return;
+        var dlg = new EmployeeEditorWindow(ViewModel.SelectedEmployee, "Редактирование сотрудника");
+        var result = await dlg.ShowDialog<Employee?>(this);
+        if (result is not null)
+        {
+            ViewModel.SelectedEmployee.UpdateFrom(result);
+        }
+    }
+
+    private async void Delete_Click(object? sender, RoutedEventArgs e)
+    {
+        if (ViewModel.SelectedEmployee is null) return;
+        var dlg = new ConfirmEmployeeWindow(ViewModel.SelectedEmployee);
+        var employee = await dlg.ShowDialog<Employee?>(this);
+
+        if (employee is not null)
+            ViewModel.Employees.Remove(employee);
+
+    }
+
+
+
+    private async void Save_Click(object? sender, RoutedEventArgs e)
     {
         var file = await StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
         {
@@ -47,7 +71,7 @@ public partial class MainWindow : Window
             new JsonSerializerOptions { WriteIndented = true });
     }
 
-    private async void Load_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    private async void Load_Click(object? sender, RoutedEventArgs e)
     {
         var files = await StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions
         {
@@ -63,7 +87,7 @@ public partial class MainWindow : Window
         if (file is null) return;
 
         await using var stream = await file.OpenReadAsync();
-        var loaded = await JsonSerializer.DeserializeAsync<List<Models.Employee>>(stream,
+        var loaded = await JsonSerializer.DeserializeAsync<List<Employee>>(stream,
             new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
         if (loaded is null) return;

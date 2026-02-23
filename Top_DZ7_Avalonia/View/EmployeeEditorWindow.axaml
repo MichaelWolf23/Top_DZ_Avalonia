@@ -1,0 +1,39 @@
+<Window xmlns="https://github.com/avaloniaui"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		mc:Ignorable="d" d:DesignWidth="420" d:DesignHeight="480"
+		xmlns:vm="using:Top_DZ7_Avalonia.ViewModels"
+		x:DataType="vm:EmployeeEditorViewModel"
+		x:Class="Top_DZ7_Avalonia.EmployeeEditorWindow"
+		Width="420" Height="480" CanResize="False"
+		WindowStartupLocation="CenterOwner"
+		Title="{Binding Title}">
+	<Border Classes="Card" Margin="16">
+		<StackPanel Spacing="0">
+			<TextBlock Text="{Binding Title}" Classes="Header" Margin="0,0,0,16"/>
+
+			<TextBlock Text="Имя" Classes="Label"/>
+			<TextBox Text="{Binding Name, Mode=TwoWay}" Watermark="Введите имя"/>
+			<TextBlock Text="Имя не может быть пустым" Foreground="{DynamicResource DangerBrush}" FontSize="11" IsVisible="{Binding !CanConfirmName}" Margin="0,2,0,0"/>
+
+			<TextBlock Text="Должность" Classes="Label"/>
+			<TextBox Text="{Binding Role, Mode=TwoWay}" Watermark="Например: Разработчик"/>
+			<TextBlock Text="Должность не может быть пустым" Foreground="{DynamicResource DangerBrush}" FontSize="11" IsVisible="{Binding !CanConfirmRole}" Margin="0,2,0,0"/>
+
+			<TextBlock Text="Возраст" Classes="Label"/>
+			<NumericUpDown Minimum="14" Maximum="99" Value="{Binding Age, Mode=TwoWay}"/>
+
+			<TextBlock Text="Email" Classes="Label"/>
+			<TextBox Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Watermark="example@mail.com"/>
+			<TextBlock Text="Неправильный формат Email" Foreground="{DynamicResource DangerBrush}" FontSize="11" IsVisible="{Binding !CanConfirmEmail}" Margin="0,2,0,0"/>
+
+			<Panel Margin="0,24,0,0"/>
+
+			<StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Right">
+				<Button Content="Отмена" Click="Cancel_Click" Width="100" HorizontalContentAlignment="Center"/>
+				<Button Classes="Primary" Content="Сохранить" Click="Ok_Click" IsEnabled="{Binding CanConfirm}" Width="100" HorizontalContentAlignment="Center"/>
+			</StackPanel>
+		</StackPanel>
+	</Border>
+</Window>

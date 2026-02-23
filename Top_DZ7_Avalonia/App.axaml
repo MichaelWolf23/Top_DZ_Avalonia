@@ -1,10 +1,81 @@
 <Application xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             x:Class="Top_DZ7_Avalonia.App"
-             RequestedThemeVariant="Default">
-             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 x:Class="Top_DZ7_Avalonia.App"
+			 RequestedThemeVariant="Default">
+	<Application.Styles>
+		<FluentTheme />
 
-    <Application.Styles>
-        <FluentTheme />
-    </Application.Styles>
+		<Style Selector="Window">
+			<Setter Property="Background" Value="{DynamicResource PageBackgroundBrush}"/>
+			<Setter Property="FontFamily" Value="Inter, Segoe UI, sans-serif"/>
+		</Style>
+
+		<Style Selector="Border.Card">
+			<Setter Property="Background" Value="{DynamicResource CardBackgroundBrush}"/>
+			<Setter Property="CornerRadius" Value="12"/>
+			<Setter Property="Padding" Value="16"/>
+			<Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="BoxShadow" Value="0 4 12 0 #1A000000"/> </Style>
+
+		<Style Selector="TextBlock.Header">
+			<Setter Property="FontSize" Value="18"/>
+			<Setter Property="FontWeight" Value="SemiBold"/>
+			<Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}"/>
+			<Setter Property="Margin" Value="0,0,0,12"/>
+		</Style>
+
+		<Style Selector="TextBlock.Label">
+			<Setter Property="FontSize" Value="13"/>
+			<Setter Property="Foreground" Value="{DynamicResource SecondaryTextBrush}"/>
+			<Setter Property="Margin" Value="0,8,0,4"/>
+		</Style>
+
+		<Style Selector="Button">
+			<Setter Property="CornerRadius" Value="6"/>
+			<Setter Property="Padding" Value="12,8"/>
+			<Setter Property="FontWeight" Value="Medium"/>
+		</Style>
+
+		<Style Selector="Button.Primary">
+			<Setter Property="Background" Value="{DynamicResource AccentBrush}"/>
+			<Setter Property="Foreground" Value="White"/>
+		</Style>
+		<Style Selector="Button.Primary:pointerover /template/ ContentPresenter">
+			<Setter Property="Background" Value="{DynamicResource AccentHoverBrush}"/>
+		</Style>
+
+		<Style Selector="Button.Danger">
+			<Setter Property="Background" Value="{DynamicResource DangerBrush}"/>
+			<Setter Property="Foreground" Value="White"/>
+		</Style>
+	</Application.Styles>
+
+	<Application.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.ThemeDictionaries>
+				<ResourceDictionary x:Key="Light">
+					<SolidColorBrush x:Key="PageBackgroundBrush" Color="#F3F4F6"/>
+					<SolidColorBrush x:Key="CardBackgroundBrush" Color="#FFFFFF"/>
+					<SolidColorBrush x:Key="PrimaryTextBrush" Color="#111827"/>
+					<SolidColorBrush x:Key="SecondaryTextBrush" Color="#6B7280"/>
+					<SolidColorBrush x:Key="AccentBrush" Color="#3B82F6"/>
+					<SolidColorBrush x:Key="AccentHoverBrush" Color="#2563EB"/>
+					<SolidColorBrush x:Key="DangerBrush" Color="#EF4444"/>
+					<SolidColorBrush x:Key="BorderBrush" Color="#E5E7EB"/>
+				</ResourceDictionary>
+
+				<ResourceDictionary x:Key="Dark">
+					<SolidColorBrush x:Key="PageBackgroundBrush" Color="#111827"/>
+					<SolidColorBrush x:Key="CardBackgroundBrush" Color="#1F2937"/>
+					<SolidColorBrush x:Key="PrimaryTextBrush" Color="#F9FAFB"/>
+					<SolidColorBrush x:Key="SecondaryTextBrush" Color="#9CA3AF"/>
+					<SolidColorBrush x:Key="AccentBrush" Color="#3B82F6"/>
+					<SolidColorBrush x:Key="AccentHoverBrush" Color="#60A5FA"/>
+					<SolidColorBrush x:Key="DangerBrush" Color="#EF4444"/>
+					<SolidColorBrush x:Key="BorderBrush" Color="#374151"/>
+				</ResourceDictionary>
+			</ResourceDictionary.ThemeDictionaries>
+		</ResourceDictionary>
+	</Application.Resources>
 </Application>

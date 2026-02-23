@@ -6,10 +6,12 @@ namespace Top_DZ7_Avalonia.ViewModels;
 
 public class MainWindowViewModel : ViewModelBase
 {
+    public ObservableCollection<Employee> Employees { get; } = new();
+
     public MainWindowViewModel()
     {
-        Employees.Add(new Employee { Name = "Анна", Role = "Дизайнер", Age = 24 });
-        Employees.Add(new Employee { Name = "Илья", Role = "Разработчик", Age = 29 });
+        Employees.Add(new Employee { Name = "Анна", Role = "Дизайнер", Age = 24, Email="anna@ya.ru" });
+        Employees.Add(new Employee { Name = "Илья", Role = "Разработчик", Age = 29, Email = "Ilya@ya.ru" });
     }
 
     public void ReplaceEmployees(IEnumerable<Employee> items)
@@ -18,7 +20,6 @@ public class MainWindowViewModel : ViewModelBase
         foreach (var e in items) Employees.Add(e);
     }
 
-    public ObservableCollection<Employee> Employees { get; } = new();
 
     private Employee? _selectedEmployee;
     public Employee? SelectedEmployee

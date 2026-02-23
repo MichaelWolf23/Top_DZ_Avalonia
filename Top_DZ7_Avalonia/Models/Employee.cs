@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Top_DZ7_Avalonia.Models;
 
@@ -29,4 +25,19 @@ public class Employee : ViewModels.ViewModelBase
         set => SetProperty(ref _age, value);
     }
 
+    private string _email = "";
+    public string Email
+    {
+        get => _email;
+        set => SetProperty(ref _email, value);
+    }
+
+    public void UpdateFrom(Employee other)
+    {
+        if (other is null) return;
+        Name = other.Name;
+        Role = other.Role;
+        Email = other.Email;
+        Age = other.Age;
+    }
 }

@@ -1,0 +1,32 @@
+<Window xmlns="https://github.com/avaloniaui"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="250"
+		xmlns:vm="using:Top_DZ7_Avalonia.ViewModels"
+		x:DataType="vm:ConfirmEmployeeViewModel"
+		x:Class="Top_DZ7_Avalonia.ConfirmEmployeeWindow"
+		Width="400" Height="250" CanResize="False"
+		WindowStartupLocation="CenterOwner"
+		Title="Подтверждение">
+	
+    <Border Classes="Card" Margin="16" VerticalAlignment="Center">
+        <StackPanel Spacing="16">
+            <TextBlock Text="Удаление сотрудника" Classes="Header" Foreground="{DynamicResource DangerBrush}"/>
+            
+            <TextBlock Text="{Binding Name, StringFormat='Вы уверены, что хотите удалить сотрудника: {0}?'}" 
+                       TextWrapping="Wrap" 
+                       FontSize="14" 
+                       Foreground="{DynamicResource PrimaryTextBrush}"/>
+            
+            <TextBlock Text="Это действие нельзя будет отменить." 
+                       FontSize="12" 
+                       Foreground="{DynamicResource SecondaryTextBrush}"/>
+
+            <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Right" Margin="0,16,0,0">
+                <Button Content="Отмена" Click="Cancel_Click" Width="90" HorizontalContentAlignment="Center"/>
+                <Button Classes="Danger" Content="Удалить" Click="Ok_Click" Width="90" HorizontalContentAlignment="Center"/>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</Window>

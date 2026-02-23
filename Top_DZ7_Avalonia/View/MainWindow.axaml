@@ -6,50 +6,51 @@
 		xmlns:vm="using:Top_DZ7_Avalonia.ViewModels"
 		x:DataType="vm:MainWindowViewModel"
 		x:Class="Top_DZ7_Avalonia.MainWindow"
-		Width="900" Height="520"
-		CanResize="False"
+		Width="900" Height="520" CanResize="False"
+		WindowStartupLocation="CenterScreen"
 		Title="Менеджер сотрудников">
-	<Grid RowDefinitions="Auto,*"
-		  ColumnDefinitions="2*,3*"
-		  Margin="16"
-		  RowSpacing="12"
-		  ColumnSpacing="12">
-		<ListBox Grid.Row="1" Grid.Column="0"
-				 ItemsSource="{Binding Employees}"
-				 SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}">
-			<ListBox.ItemTemplate>
-				<DataTemplate>
-					<StackPanel Spacing="2">
-						<TextBlock Text="{Binding Name}" FontWeight="Bold"/>
-						<TextBlock Text="{Binding Role}" FontSize="12" Opacity="0.75"/>
-					</StackPanel>
-				</DataTemplate>
-			</ListBox.ItemTemplate>
-		</ListBox>
-		<Border Grid.Row="1" Grid.Column="1"
-				Padding="12"
-				BorderThickness="1">
-			<StackPanel Spacing="8">
-				<TextBlock Text="Детали" FontWeight="Bold"/>
-
-				<TextBlock Text="Имя"/>
-				<TextBox Text="{Binding SelectedEmployee.Name, Mode=TwoWay}"/>
-
-				<TextBlock Text="Должность"/>
-				<TextBox Text="{Binding SelectedEmployee.Role, Mode=TwoWay}"/>
-
-				<TextBlock Text="Возраст"/>
-				<NumericUpDown Minimum="14" Maximum="99"
-							   Value="{Binding SelectedEmployee.Age, Mode=TwoWay}"/>
+    
+	<Grid RowDefinitions="Auto,*" ColumnDefinitions="2*,3*" Margin="20" RowSpacing="16" ColumnSpacing="16">
+        
+		<Border Grid.Row="0" Grid.ColumnSpan="2" Classes="Card" Padding="12">
+			<StackPanel Orientation="Horizontal" Spacing="10">
+				<Button Classes="Primary" Content="Добавить" Click="Add_Click"/>
+				<Button Content="Редактировать" Click="Edit_Click" IsEnabled="{Binding SelectedEmployee, Converter={x:Static ObjectConverters.IsNotNull}}"/>
+				<Button Classes="Danger" Content="Удалить" Click="Delete_Click" IsEnabled="{Binding SelectedEmployee, Converter={x:Static ObjectConverters.IsNotNull}}"/>
+				<Separator Width="2" Height="30" Background="{DynamicResource BorderBrush}" Margin="4,0"/>
+				<Button Content="Сохранить" Click="Save_Click"/>
+				<Button Content="Загрузить" Click="Load_Click"/>
 			</StackPanel>
 		</Border>
-		<StackPanel Grid.Row="0" Grid.ColumnSpan="2"
-					Orientation="Horizontal"
-					Spacing="8">
-			<Button Content="Добавить" Click="Add_Click"/>
-			<Button Content="Сохранить в файл" Click="Save_Click"/>
-			<Button Content="Загрузить из файла" Click="Load_Click"/>
-		</StackPanel>
 
+		<Border Grid.Row="1" Grid.Column="0" Classes="Card" Padding="0">
+			<ListBox ItemsSource="{Binding Employees}" 
+					 SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}"
+                     Background="Transparent" BorderThickness="0" CornerRadius="12">
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<StackPanel Spacing="4" Margin="8,4">
+							<TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="15" Foreground="{DynamicResource PrimaryTextBrush}"/>
+							<TextBlock Text="{Binding Role}" FontSize="12" Foreground="{DynamicResource SecondaryTextBrush}"/>
+						</StackPanel>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
+		</Border>
+
+		<Border Grid.Row="1" Grid.Column="1" Classes="Card">
+			<StackPanel Spacing="12" IsVisible="{Binding SelectedEmployee, Converter={x:Static ObjectConverters.IsNotNull}}">
+				<TextBlock Text="Детали сотрудника" Classes="Header"/>
+				
+                <Border Background="{DynamicResource PageBackgroundBrush}" CornerRadius="8" Padding="12">
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="{Binding SelectedEmployee.Name, StringFormat='Имя: {0}'}" FontSize="16" FontWeight="Medium"/>
+				        <TextBlock Text="{Binding SelectedEmployee.Role, StringFormat='Должность: {0}'}" FontSize="14" Foreground="{DynamicResource SecondaryTextBrush}"/>
+				        <TextBlock Text="{Binding SelectedEmployee.Age, StringFormat='Возраст: {0} лет'}" FontSize="14" Foreground="{DynamicResource SecondaryTextBrush}"/>
+				        <TextBlock Text="{Binding SelectedEmployee.Email, StringFormat='Email: {0}'}" FontSize="14" Foreground="{DynamicResource SecondaryTextBrush}"/>
+                    </StackPanel>
+                </Border>
+			</StackPanel>
+		</Border>
 	</Grid>
 </Window>
