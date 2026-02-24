@@ -1,0 +1,25 @@
+<Window xmlns="https://github.com/avaloniaui"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		mc:Ignorable="d" d:DesignWidth="250" d:DesignHeight="200"
+		x:Class="Top_DZ8_Avalonia.Views.AddItemWindow"
+		xmlns:vm="using:Top_DZ8_Avalonia.ViewModels"
+		x:DataType="vm:AddItemViewModel"
+		Title="Добавить товар" Width="250" Height="200"
+		WindowStartupLocation="CenterOwner" CanResize="False">
+	<StackPanel Margin="20" Spacing="10">
+		<TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Watermark="Название товара"/>
+		<NumericUpDown Value="{Binding Price, UpdateSourceTrigger=PropertyChanged}"
+					   Minimum="0"
+					   Increment="10"
+					   FormatString="0.00"
+					   Watermark="Цена товара"/>
+
+		<Button Content="ОК"
+				Command="{Binding ConfirmCommand}"
+				HorizontalAlignment="Stretch"
+				HorizontalContentAlignment="Center"
+				Click="OnOkClick"/>
+	</StackPanel>
+</Window>
